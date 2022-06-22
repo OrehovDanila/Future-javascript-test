@@ -1,0 +1,48 @@
+.singleBook__container{
+    display: flex;
+    justify-content: space-around;
+    min-height: 75vh;
+    align-items: center;
+    &__imgContainer{
+        width: 33vw;
+    }
+    &__img{
+        height: 350px;
+        box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
+    }
+    &__content{
+        width: 66vw;
+        background-color: white;
+        min-height: 75vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        &__categories{
+            font-weight: 100;
+            padding-left: 100px;
+            margin-top: 100px;
+        }
+        &__title{
+            font-weight: bold;
+            padding-left: 100px;
+            font-size: 2em;
+            margin-top: 50px;
+        }
+        &__author{
+            font-weight: 100;
+            padding-left: 100px;
+            color: grey;
+            text-decoration: underline;
+            margin-top: 50px;
+        }
+        &__description{
+            margin: 100px;
+            border: 1px solid grey;
+            box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
+            width: 50vw;
+            min-height: 200px;
+            text-align: start;
+        }
+    }
+}
