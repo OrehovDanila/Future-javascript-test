@@ -20,11 +20,13 @@
         align-items: flex-start;
         &__categories{
             font-weight: 100;
+            width: 50vw;
             padding-left: 100px;
             margin-top: 100px;
         }
         &__title{
             font-weight: bold;
+            width: 50vw;
             padding-left: 100px;
             font-size: 2em;
             margin-top: 50px;
@@ -32,6 +34,7 @@
         &__author{
             font-weight: 100;
             padding-left: 100px;
+            width: 50vw;
             color: grey;
             text-decoration: underline;
             margin-top: 50px;
