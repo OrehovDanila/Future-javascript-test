@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import reducers from '../reducers'
 
+//Простой стор, с одним редюсером. 
+
 const store = configureStore({
     reducer: {reducers},
     middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
