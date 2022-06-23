@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './booksList.scss'
 
 
-import { fetchBookList, fetchTotalItems } from '../../actions';
+import { fetchBookList, fetchTotalItems, bookIdChange, toogleBookList } from '../../actions';
 import BookListItem from '../bookListItem/BookListItem';
 
 //Компонент отвечающий за получение с сервера данных. Значения фильров получает из store
@@ -35,6 +35,7 @@ const BooksList = () => {
             dispatch(fetchBookList(searchingText, orderBy, category)(getVolumesByTitle));
             dispatch(fetchTotalItems(searchingText, orderBy, category)(getVolumesTotalItems));
         }
+        // eslint-disable-next-line
     },[searchingText, orderBy, category])
 
 
@@ -49,6 +50,11 @@ const BooksList = () => {
         return <h5 className="text-center mt-5">Введите поисковый запрос</h5>
     }
 
+    const handleOnClick = (id) => {
+        dispatch(bookIdChange(id));
+        dispatch(toogleBookList(false));
+    }
+
     //Функция для рендера списка с помощью дамб компонентов. Для key используется не id, а и etag, в связи с повторяющемися в api id для одинаковых книг, но разных изданий/версий
 
     const renderBooksList = (arr) => {
@@ -58,7 +64,7 @@ const BooksList = () => {
 
         return arr.map(({etag, ...props}) => {
             return (
-                <BookListItem key={etag} {...props}/>
+                <BookListItem key={etag} {...props} handleOnClick={handleOnClick}/>
             )
         })
     }
