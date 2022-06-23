@@ -9,6 +9,8 @@ const useGoogleBookServise = () => {
     const _apiBase = 'https://www.googleapis.com/books/v1/volumes';
     const _apiKey = 'AIzaSyB7kebsaJQApiAKNy6-nBMzyG_p9IwzAnw';
 
+    //Функция для получения списка книг по названию
+
     const getVolumesByTitle = async (title, sortBy = 'relevance', subject = 'all', index = 0) => {
         const categories = subject === 'all'? '' : `+subject:${subject}`;
         const res = await request(`${_apiBase}?q=intitle:${title}${categories}&orderBy=${sortBy}&startIndex=${index}&maxResults=30&key=${_apiKey}`);
@@ -21,16 +23,22 @@ const useGoogleBookServise = () => {
 
     }
 
+    //Функция для получения количества результатов. Сделана из-за специфики данных.  
+
     const getVolumesTotalItems = async (title, sortBy = 'relevance', subject = 'all', index = 0) => {
         const categories = subject === 'all'? '' : `+subject:${subject}`;
         const res = await request(`${_apiBase}?q=intitle:${title}${categories}&orderBy=${sortBy}&startIndex=${index}&maxResults=30&key=${_apiKey}`);
         return res.totalItems;
     }
 
+    //Функция для получения книги по ID
+
     const getVolumeById = async (id) => {
         const res = await request(`${_apiBase}/${id}`);
         return _transformBook(res);
     }
+
+    //Вспомогательная функция для преоброзования данных
 
     const _transformBook = (book) => {
         return {

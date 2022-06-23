@@ -33,8 +33,6 @@ const SingleBook = () => {
         return <h5 className="text-center mt-5">Ошибка загрузки</h5>
     }
 
-    //Рендер
-
     return(
         <div className='singleBook__container'>
             <div className='singleBook__container__imgContainer'>
