@@ -17,6 +17,8 @@ export const bookListFetching = createAction('BOOK_LIST_FETCHING');
 export const bookListFetched = createAction('BOOK_LIST_FETCHED');
 export const bookListFetchingError = createAction('BOOK_LIST_FETCHING_ERROR');
 
+export const bookListClearing = createAction('BOOK_LIST_CLEARING');
+
 
 export const fetchBookList = (title, sortBy, category, index) => (getVolumesByTitle) => (dispatch) => {
     dispatch(bookListFetching());
@@ -46,4 +48,4 @@ export const searchingTextChange = createAction('SEARCHING_TEXT_CHANGE');
 
 export const toogleBookList = createAction('TOOGLE_BOOK_LIST');
 export const bookIdChange = createAction('BOOK_ID_CHANGE');
-
+export const indexChange = createAction('INDEX_CHANGE')

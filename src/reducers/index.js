@@ -17,6 +17,8 @@ import {
     totalItemsFetched,
     totalItemsFetching,
     totalItemsFetchingError,
+    indexChange,
+    bookListClearing,
 } from '../actions';
 
 const initialState = {
@@ -31,6 +33,7 @@ const initialState = {
     singleBook: {},
     singleBookLoadingStatus: 'idle',
     searchingText: '',
+    index: 0,
 }
 
 const reducers = createReducer(initialState, {
@@ -40,9 +43,10 @@ const reducers = createReducer(initialState, {
     [bookListFetching]: state => {state.bookListLoadingStatus = 'loading'},
     [bookListFetched]: (state, action) => {
         state.bookListLoadingStatus = 'idle';
-        state.bookList = action.payload;
+        state.bookList.push(...action.payload);
     },
     [bookListFetchingError]: state => {state.bookListLoadingStatus = 'error'},
+    [bookListClearing]: state => {state.bookList = []},
     [totalItemsFetching]: state => {state.totalItemsLoadingStatus = 'loading'},
     [totalItemsFetched]: (state, action) => {
         state.totalItemsLoadingStatus = 'idle';
@@ -57,6 +61,7 @@ const reducers = createReducer(initialState, {
     },
     [singleBookFetchingError]: state => {state.singleBookLoadingStatus = 'error'},
     [searchingTextChange]: (state, action) => {state.searchingText = action.payload},
+    [indexChange]: (state, action) => {state.index = action.payload},
 })
 
 export default reducers;

@@ -5,7 +5,9 @@ import { useDispatch } from 'react-redux';
 import { toogleBookList,
          categoriesChange,
          orderByChange,
-         searchingTextChange } from '../../actions'
+         searchingTextChange,
+         indexChange,
+         bookListClearing } from '../../actions'
 
 import "./appHeader.scss";
 
@@ -30,8 +32,11 @@ const AppHeader = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
+
         dispatch(searchingTextChange(formValue));
         dispatch(toogleBookList(true));
+        dispatch(indexChange(0));
+        dispatch(bookListClearing());
     }
 
     return(
