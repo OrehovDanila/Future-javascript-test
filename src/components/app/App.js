@@ -4,6 +4,8 @@ import AppHeader from '../appHeader/AppHeader';
 import BooksList from '../booksList/BooksList';
 import SingleBook from '../singleBook/SingleBook';
 
+//Основной компонент приложения. Ввиду простоты приложения именно в нём бует меняться отбражение карточки книги
+
 function App() {
 
   return (

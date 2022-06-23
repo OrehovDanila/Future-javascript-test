@@ -1,3 +1,5 @@
+//Dumb-компонент для рендера списка
+
 const BookListItem = ({thumbnail, categories, title, authors}) => {
     return(
         <div className="bookList__list__item">

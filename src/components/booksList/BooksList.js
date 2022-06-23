@@ -10,7 +10,11 @@ import './booksList.scss'
 import { fetchBookList, fetchTotalItems } from '../../actions';
 import BookListItem from '../bookListItem/BookListItem';
 
+//Компонент отвечающий за получение с сервера данных. Значения фильров получает из store
+
 const BooksList = () => {
+
+    //Блок инициализации
 
     const dispatch = useDispatch();
     const { getVolumesByTitle, getVolumesTotalItems } = GoogleBookServise();
@@ -24,17 +28,17 @@ const BooksList = () => {
     const category = useSelector(state => state.reducers.categories);
     const orderBy = useSelector(state => state.reducers.orderBy);
 
-    useEffect(() => {
-        if(searchingText !== ''){
-            dispatch(fetchBookList(searchingText, orderBy, category)(getVolumesByTitle));
-        }
-    },[searchingText, orderBy, category])
+    //Приложение будет ререндериться при смене фильтров.
 
     useEffect(() => {
         if(searchingText !== ''){
+            dispatch(fetchBookList(searchingText, orderBy, category)(getVolumesByTitle));
             dispatch(fetchTotalItems(searchingText, orderBy, category)(getVolumesTotalItems));
         }
-    }, [searchingText, orderBy, category ])
+    },[searchingText, orderBy, category])
+
+
+    //Блок заглушек
 
     if (bookListLoadingStatus === "loading" || totalItemsLoadingStatus === "loading") {
         return <h5 className="text-center mt-5">Загрузка</h5>
@@ -44,6 +48,8 @@ const BooksList = () => {
     if (books.length === 0 && searchingText === '') {
         return <h5 className="text-center mt-5">Введите поисковый запрос</h5>
     }
+
+    //Функция для рендера списка с помощью дамб компонентов. Для key используется не id, а и etag, в связи с повторяющемися в api id для одинаковых книг, но разных изданий/версий
 
     const renderBooksList = (arr) => {
         if (arr.length === 0) {

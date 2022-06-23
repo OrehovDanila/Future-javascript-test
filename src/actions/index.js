@@ -1,16 +1,22 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const toogleBookList = createAction('TOOGLE_BOOK_LIST');
+//Группа экшенов связанных с запросом данных
 
-export const categoriesChange = createAction('CATEGORIES_CHANGE');
+export const singleBookFetching = createAction('SINGLE_BOOK_FETCHING');
+export const singleBookFetched = createAction('SINGLE_BOOK_FETCHED');
+export const singleBookFetchingError = createAction('SINGLE_BOOK_FETCHING_ERROR');
 
-export const orderByChange = createAction('ORDER_BY_CHANGE');
-
-export const searchingTextChange = createAction('SEARCHING_TEXT_CHANGE');
+export const fetchSingleBook = (id) => (getVolumeById) => (dispatch) => {
+    dispatch(singleBookFetching);
+    getVolumeById(id)
+        .then(data => dispatch(singleBookFetched(data)))
+        .catch(() => dispatch(singleBookFetchingError()))
+}
 
 export const bookListFetching = createAction('BOOK_LIST_FETCHING');
 export const bookListFetched = createAction('BOOK_LIST_FETCHED');
 export const bookListFetchingError = createAction('BOOK_LIST_FETCHING_ERROR');
+
 
 export const fetchBookList = (title, sortBy, category, index) => (getVolumesByTitle) => (dispatch) => {
     dispatch(bookListFetching());
@@ -30,16 +36,14 @@ export const fetchTotalItems = (title, sortBy, category, index) => (getVolumesTo
         .catch(() => dispatch(totalItemsFetchingError()))    
 }
 
+//Группа экшенов связанных с фильтрами поиска
 
+export const categoriesChange = createAction('CATEGORIES_CHANGE');
+export const orderByChange = createAction('ORDER_BY_CHANGE');
+export const searchingTextChange = createAction('SEARCHING_TEXT_CHANGE');
+
+//Группа экшенов связанных с внешним видом приложения
+
+export const toogleBookList = createAction('TOOGLE_BOOK_LIST');
 export const bookIdChange = createAction('BOOK_ID_CHANGE');
 
-export const singleBookFetching = createAction('SINGLE_BOOK_FETCHING');
-export const singleBookFetched = createAction('SINGLE_BOOK_FETCHED');
-export const singleBookFetchingError = createAction('SINGLE_BOOK_FETCHING_ERROR');
-
-export const fetchSingleBook = (id) => (getVolumeById) => (dispatch) => {
-    dispatch(singleBookFetching);
-    getVolumeById(id)
-        .then(data => dispatch(singleBookFetched(data)))
-        .catch(() => dispatch(singleBookFetchingError()))
-}

@@ -1,6 +1,6 @@
 import { useHttp } from "../hooks/http.hook";
 
-// Хук для доступа к google api. Умеет получать книги по названию, и получать одну книгу по id. А так же сразу перобразует данные в те, что необходимы приложению. 
+// Хук для доступа к google api. Умеет получать книги по названию, так же ввиду специфики данных отдельно получает количество найденных книг и получать одну книгу по id. А так же сразу перобразует данные в те, что необходимы приложению. 
 
 const useGoogleBookServise = () => {
 
@@ -12,6 +12,7 @@ const useGoogleBookServise = () => {
     const getVolumesByTitle = async (title, sortBy = 'relevance', subject = 'all', index = 0) => {
         const categories = subject === 'all'? '' : `+subject:${subject}`;
         const res = await request(`${_apiBase}?q=intitle:${title}${categories}&orderBy=${sortBy}&startIndex=${index}&maxResults=30&key=${_apiKey}`);
+        //Проверка на пустой ответ, что бы приложение не путало ошибку запроса с пустым ответом.
         if(res.items){
             return res.items.map(_transformBook);
         } else {

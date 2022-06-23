@@ -9,12 +9,16 @@ import { toogleBookList,
 
 import "./appHeader.scss";
 
+//Компонент-шапка
+
 const AppHeader = () => {
 
-    //Используем стейт для самосвязанности формы. Это внутренний стейт, другие коспоненты его не используют, не вижу смысла закидывать эту информацию в стор
+    //Используем стейт для самосвязанности формы. Это внутренний стейт, другие коспоненты его не используют, не вижу смысла закидывать эту информацию в стор.
     const [formValue, setFormValue] = useState('');
 
     const dispatch = useDispatch();
+
+    //Функции обработчики событий
 
     const handleCategories = (e) => {
         dispatch(categoriesChange(e.target.value));
